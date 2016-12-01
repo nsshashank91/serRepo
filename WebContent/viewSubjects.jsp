@@ -69,7 +69,7 @@
   						<button class="btn btn-success" type="submit" id="viewSubjects">View Subjects</button> 
                          
             		</form>
-            		<button class="btn btn-danger" type="button" id="cancel">Cancel</button>
+            		<button class="btn btn-danger" type="button" id="cancel" onclick="goBack()">Back</button>
             	</div>
             </div>
            
@@ -116,6 +116,10 @@
 	    	
 	    		    	
 	    });
+        function goBack() {
+	        window.history.back();
+	    }
+	    
         </script>
     </body>
 </html>

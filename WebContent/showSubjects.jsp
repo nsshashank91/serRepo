@@ -53,16 +53,17 @@
 	            	<table id="viewSubjectsId">
 	            	<thead>
 	            		<tr>
-	            			<th>Name</th>
-			                <th>Position</th>
-			                <th>Office</th>
-			                <th>Extn.</th>
-			                <th>Start date</th>
-			                <th>Salary</th>
+	            			<th>Course Name</th>
+			                <th>Semester</th>
+			                <th>Subject Type</th>
+			                <th>Subject Name</th>
+			                
 	            		</tr>
 	            	</thead>
 	            	
 	            	</table>
+	            	
+	            	<button class="btn btn-danger" type="button" id="cancel" onclick="goBack()">Back</button>
 	            </div>
             </div>
            
@@ -79,20 +80,20 @@
         		return results[1] || 0;
         	}
 	        var courseName = 	decodeURIComponent($.urlParam('select_course'));
-	        alert(courseName);
+	        var semester = 	decodeURIComponent($.urlParam('select_semester'));
+	        
 	        	$('#viewSubjectsId').DataTable({
 	        		
 	        			"ajax": {
-	        	            "url": "showSubjectServlet",
+	        	            "url": "showSubjectServlet?course="+courseName+"&semester="+semester,
 	        	            "dataSrc": ""
 	        	        },
 	        	        "columns": [
-	        	            { "data": "name" },
-	        	            { "data": "position" },
-	        	            { "data": "office" },
-	        	            { "data": "extn" },
-	        	            { "data": "start_date" },
-	        	            { "data": "salary" }
+	        	            { "data": "courseName" },
+	        	            { "data": "semester" },
+	        	            { "data": "subjectType" },
+	        	            { "data": "subjectName" }
+	        	            
 	        	        ]
 	        	});
         	});
@@ -118,6 +119,10 @@
 	    
 	    	
 	    });*/
+	    function goBack() {
+	        window.history.back();
+	    }
+	    
         </script>
     </body>
 </html>

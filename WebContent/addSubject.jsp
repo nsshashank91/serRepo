@@ -88,7 +88,7 @@
   						<button class="btn btn-success" type="submit">Add Subject</button> 
                          
             		</form>
-            			<button class="btn btn-danger" type="button" id="cancel">Cancel</button>
+            			<button class="btn btn-danger" type="button" id="cancel" onclick="goBack()">Back</button>
             	</div>
             </div>
 		</div>
@@ -161,6 +161,10 @@
         	    		}
         	    	});
         	    });
+        	    function goBack() {
+        	        window.history.back();
+        	    }
+        	    
         </script>
     </body>
 </html>
