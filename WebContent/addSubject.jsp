@@ -31,7 +31,7 @@
                 <div class="col-lg-8 col-lg-offset-2">
                         <ul class="nav nav-pills nav-justified">
                             <li><a href="index.jsp">Home</a></li>
-                            <li><a href="student.html">Student</a></li>
+                            <li><a href="student.jsp">Student</a></li>
                             <li class="active" id="logout"><a href="logoutServlet">Logout</a></li> 
                         </ul>
                 </div>
@@ -147,7 +147,7 @@
         	    			$('#select_subject_type').append('<option>Analysis</option>');
         	    			$('#select_subject_type').append('<option>Design</option>');
         	    			$('#select_subject_type').append('<option>Logic</option>');
-        	    			$('#select_subject_type').append('<option>Conceptual</option>');
+        	    			
         	    		}
         	    	});
         	    	$('#select_subject_type').on('change', function() {

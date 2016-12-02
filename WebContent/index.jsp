@@ -25,7 +25,7 @@
                 <div class="col-lg-8 col-lg-offset-2">
                         <ul class="nav nav-pills nav-justified">
                             <li class="active"><a href="index.jsp">Home</a></li>
-                            <li><a href="student.html">Student</a></li>
+                            <li><a href="student.jsp">Student</a></li>
                             <li><a href="admin.jsp">Admin</a></li> 
                         </ul>
                 </div>

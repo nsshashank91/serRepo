@@ -44,4 +44,14 @@
     <servlet-name>ShowSubjectsServlet</servlet-name>
     <url-pattern>/showSubjectServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RecommenderServlet</display-name>
+    <servlet-name>RecommenderServlet</servlet-name>
+    <servlet-class>com.cse.se.RecommenderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecommenderServlet</servlet-name>
+    <url-pattern>/RecommenderServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

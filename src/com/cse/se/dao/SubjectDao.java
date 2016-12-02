@@ -109,4 +109,60 @@ public class SubjectDao {
 		}
 		
 	}
+	
+	public String recommendSubject(String courseName, String semester, String subjectType){
+		
+		try{
+			con = JDBCHelper.getConnection();
+			String subjectQuery = "select subjectName from subject where courseName=? and semester=? and subjectType=?";
+			
+			preparedStatement = con.prepareStatement(subjectQuery);
+			preparedStatement.setString(1, courseName);
+			preparedStatement.setString(2, semester);
+			preparedStatement.setString(3, subjectType);
+			ResultSet rs = preparedStatement.executeQuery();
+			String subjectName = null;
+			while (rs.next()) {
+
+				subjectName = rs.getString("subjectName");
+				
+
+				System.out.println("subjectName : " + subjectName);
+				break;
+				
+			}
+			if(null!=subjectName){
+				return subjectName;
+			}
+			else{
+				return null;
+			}
+
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			if(null!=preparedStatement){
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return null;
+				}
+			}
+			if(null!=con){
+				try {
+					JDBCHelper.closeConnection(con);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return null;
+				}
+			}
+		}
+		
+	}
 }

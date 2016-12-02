@@ -31,7 +31,7 @@
                 <div class="col-lg-8 col-lg-offset-2">
                         <ul class="nav nav-pills nav-justified">
                             <li><a href="index.jsp">Home</a></li>
-                            <li><a href="student.html">Student</a></li>
+                            <li><a href="student.jsp">Student</a></li>
                             <li class="active" id="logout"><a href="logoutServlet">Logout</a></li> 
                         </ul>
                 </div>
@@ -49,7 +49,7 @@
 	            </div>
             </div>
             <div class="row">
-            	 <div class="col-lg-3 col-lg-offset-3">
+            	 <div class="col-lg-6 col-lg-offset-3">
 	            	<table id="viewSubjectsId">
 	            	<thead>
 	            		<tr>
