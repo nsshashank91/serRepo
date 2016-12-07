@@ -43,18 +43,11 @@
              <div class="row">
                 <div style="height: 50px"></div>
             </div>
-        <%--     <%
-		   		String sem = (String)request.getAttribute("semester");
-		   		String course = (String)request.getAttribute("course");
-		   		String sub = (String)request.getAttribute("subject");
-		   		System.out.println("Recommeder jsp "+sem+" "+course+" "+sub);
-		   		
-
-   			%> --%>
+       
             
             <form action="FeedBackServlet" method="POST">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-3 col-lg-offset-4">
             	        <div class="form-group">
 	                          <label for="select_feedback">Select Feedback:</label>
 	                          <select class="form-control" id="select_feedback" name="select_feedback">
@@ -69,12 +62,16 @@
 	                          <input type="hidden" name="course" value="${course}" />
 	                          <input type="hidden" name="subject" value="${subject}" />
                     	</div>
+                    	<button class="btn btn-success" type="submit" id="Submit">Submit Feedback</button>
                     </div>
                  </div>
-                 <button class="btn btn-success" type="submit" id="Submit">Submit Feedback</button>
+                 
             </form>
+             <div class="row">
+                <div style="height: 20px"></div>
+            </div>
             <div class="row">
-                <div class="col-lg-3 col-lg-offset-5">
+                <div class="col-lg-3 col-lg-offset-4">
              		<button class="btn btn-danger" type="button" id="cancel" onclick="goBack()">Back</button>
              	</div>
              </div>
