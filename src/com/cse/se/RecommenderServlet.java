@@ -47,6 +47,8 @@ public class RecommenderServlet extends HttpServlet {
 				if(null!=recommendedSubject){
 					rd = request.getRequestDispatcher("Recommender.jsp");
 					request.setAttribute("subject", recommendedSubject);
+					request.setAttribute("semester", semester);
+					request.setAttribute("course", course);
 					rd.forward(request, response);
 				}
 				else{

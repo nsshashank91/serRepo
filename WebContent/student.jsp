@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,6 +36,17 @@
             <div class="row">
                 <div style="height: 50px"></div>
             </div>
+             <div class="row">
+                <div class="col-lg-3 col-lg-offset-4">
+            		<div>
+                    	<c:if test="${not empty msg}">
+                    	
+                        	<p style="color:red" id="msgId">${msg}</p>
+                        </c:if>
+                        
+                    </div>
+                  </div>
+              </div>
             <div class="row">
                 <div class="col-lg-3 col-lg-offset-4">
                    <h1>Student Details</h1>
@@ -98,6 +110,7 @@
         $(document).ready(function(){
 	    	$('#select_course').on('change', function() {
 	    		  //alert( this.value ); // or $(this).val()
+	    		  $('#msgId').text('');
 	    			var courseName = this.value;
 	    		  	if(courseName=='--Select Course--'){
 	    		  		$('#select_semester').empty();

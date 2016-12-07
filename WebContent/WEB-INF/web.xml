@@ -54,4 +54,14 @@
     <servlet-name>RecommenderServlet</servlet-name>
     <url-pattern>/RecommenderServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FeedBackServlet</display-name>
+    <servlet-name>FeedBackServlet</servlet-name>
+    <servlet-class>com.cse.se.FeedBackServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FeedBackServlet</servlet-name>
+    <url-pattern>/FeedBackServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

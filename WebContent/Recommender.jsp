@@ -14,8 +14,7 @@
         <link href="vendor/bootstrap/css/dataTable.css" rel="stylesheet"/>
     </head>
     <body>
-   
-    
+   	    
         <div class="container-fluid">
             <div class="row">
                 
@@ -44,6 +43,36 @@
              <div class="row">
                 <div style="height: 50px"></div>
             </div>
+        <%--     <%
+		   		String sem = (String)request.getAttribute("semester");
+		   		String course = (String)request.getAttribute("course");
+		   		String sub = (String)request.getAttribute("subject");
+		   		System.out.println("Recommeder jsp "+sem+" "+course+" "+sub);
+		   		
+
+   			%> --%>
+            
+            <form action="FeedBackServlet" method="POST">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+            	        <div class="form-group">
+	                          <label for="select_feedback">Select Feedback:</label>
+	                          <select class="form-control" id="select_feedback" name="select_feedback">
+	                          	<option>--Select Feedback--</option>
+	                            <option value="5">Awesome!!</option>
+	                            <option value="4">Good!</option>
+	                            <option value="3">OK..</option>
+	                            <option value="2">Bad!</option>
+	                            <option value="1">Forget It..!!</option>  
+	                          </select>
+	                          <input type="hidden" name="semester" value="${semester}" />
+	                          <input type="hidden" name="course" value="${course}" />
+	                          <input type="hidden" name="subject" value="${subject}" />
+                    	</div>
+                    </div>
+                 </div>
+                 <button class="btn btn-success" type="submit" id="Submit">Submit Feedback</button>
+            </form>
             <div class="row">
                 <div class="col-lg-3 col-lg-offset-5">
              		<button class="btn btn-danger" type="button" id="cancel" onclick="goBack()">Back</button>
