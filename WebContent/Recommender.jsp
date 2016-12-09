@@ -14,7 +14,6 @@
         <link href="vendor/bootstrap/css/dataTable.css" rel="stylesheet"/>
     </head>
     <body>
-   	    
         <div class="container-fluid">
             <div class="row">
                 
