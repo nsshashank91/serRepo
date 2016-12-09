@@ -147,6 +147,7 @@
 	    		  			}
 	    		  	}
 	    		  	else if(courseName=='MTech'){
+	    		  		$('#select_semester').empty();
 	    		  		$('#semesterErrorId').text('');
     		  			$('#select_semester').prop('disabled', false);
     		  			option = '<option>--Select Semester--</option>';
