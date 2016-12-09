@@ -60,7 +60,7 @@ public class RecommenderServlet extends HttpServlet {
 		}
 		else{
 			rd = request.getRequestDispatcher("student.jsp");
-			request.setAttribute("msg", "Select All Options");
+			request.setAttribute("msg", "Select appropriate Options");
 			rd.forward(request, response);
 		}
 		

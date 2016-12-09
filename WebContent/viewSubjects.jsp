@@ -39,14 +39,19 @@
             <div class="row">
                 	<div style="height:25px"></div>
             </div>
-            
              <div class="row">
                 <div class="col-lg-3 col-lg-offset-3">
                    <h1>View Subjects</h1>
                  </div>
+           
             <div class="row">
                 	<div style="height: 100px"></div>
             </div>
+            </div>
+            <div class="row">
+       			<div class="col-lg-3 col-lg-offset-4">
+                        <p style="color:red" id="msgId"></p>
+                 </div>
             </div>
             <div class="row">
             	<div class="col-lg-3 col-lg-offset-4">
@@ -66,7 +71,7 @@
 	                          </select>
                     	</div>
                     	
-  						<button class="btn btn-success" type="submit" id="viewSubjects">View Subjects</button> 
+  						<button class="btn btn-success" type="submit" id="viewSubjectsId">View Subjects</button> 
                          
             		</form>
             		<button class="btn btn-danger" type="button" id="cancel" onclick="goBack()">Back</button>
@@ -116,9 +121,29 @@
 	    	
 	    		    	
 	    });
+        
+        
         function goBack() {
-	        window.history.back();
+	        window.location.href="admin.jsp";
 	    }
+        
+        (function($){
+ 		   $('#viewSubjectsId').on('click',function(){
+ 			   
+ 			  var course=$('#select_course').val();
+ 			  var sem=$('#select_semester').val();
+ 			  if((course=='--Select Course--')||(sem=='--Select Semester--')){
+ 				  $('#msgId').text('Select course and semester');
+ 				  return false;
+ 			  }
+		    	  
+ 		 	});
+ 		   
+ 		   $('#cancelId').on('click',function(){
+ 		   		window.location.href='student.jsp';
+ 		   });
+ 		  
+ 	   })(jQuery);
 	    
         </script>
     </body>
