@@ -51,6 +51,11 @@
                 <div class="col-lg-3 col-lg-offset-4">
                    <h1>Student Details</h1>
                    <form method="post" action="RecommenderServlet">
+                   		<div class="row">
+       						<div class="col-lg-7 ">
+                        		<p style="color:red" id="courseErrorId"></p>
+                 			</div>
+            			</div>
                         <div class="form-group">
 	                          <label for="select_course">Select Course:</label>
 	                          <select class="form-control" id="select_course" name="select_course">
@@ -59,12 +64,22 @@
 	                            <option>MTech</option> 
 	                          </select>
                     	</div>
+                    	<div class="row">
+       						<div class="col-lg-7 ">
+                        		<p style="color:red" id="semesterErrorId"></p>
+                 			</div>
+            			</div>
                         <div class="form-group">
 	                          <label for="select_semester">Select Semester:</label>
 	                          <select class="form-control" id="select_semester" name="select_semester" disabled="disabled">
 	                           		<option>--Select Semester--</option>
 	                          </select>
                     	</div>
+                    	<div class="row">
+       						<div class="col-lg-7 ">
+                        		<p style="color:red" id="subTypeErrorId"></p>
+                 			</div>
+            			</div>
                         <div class="form-group">
                           <label for="select_interest">Select Interest:</label>
                           <select class="form-control" id="select_interest" name="select_interest">
@@ -94,7 +109,7 @@
                             <option>IoT</option>
                           </select>
                         </div>
-                        <button class="btn btn-success" type="submit">Recommend Subject</button> 
+                        <button class="btn btn-success" type="submit" id="recommendId">Recommend Subject</button> 
                          
                     </form>
                     <button class="btn btn-danger" type="button" id="cancel" onclick="goBack()">Back</button>
@@ -111,6 +126,7 @@
 	    	$('#select_course').on('change', function() {
 	    		  //alert( this.value ); // or $(this).val()
 	    		  $('#msgId').text('');
+	    		  $('#courseErrorId').text('');
 	    			var courseName = this.value;
 	    		  	if(courseName=='--Select Course--'){
 	    		  		$('#select_semester').empty();
@@ -131,7 +147,7 @@
 	    		  			}
 	    		  	}
 	    		  	else if(courseName=='MTech'){
-	    		  		$('#select_semester').empty();
+	    		  		$('#semesterErrorId').text('');
     		  			$('#select_semester').prop('disabled', false);
     		  			option = '<option>--Select Semester--</option>';
     		  			$('#select_semester').append(option);
@@ -142,7 +158,38 @@
 	    		  	}
 	    	});
 	    	
-	    		    });
+	    	$('#select_semester').on('change', function() {
+	    		$('#semesterErrorId').text('');
+	    	});
+	    	
+			$('#select_interest').on('change', function() {
+				$('#subTypeErrorId').text('');
+	    	});
+	    	
+	    });
+        
+        (function($){
+	 		   $('#recommendId').on('click',function(){
+	 			   
+	 			  var course=$('#select_course').val();
+	 			  var sem=$('#select_semester').val();
+	 			 var subType=$('#select_interest').val();
+ 			  	var subName=$('#subject_name').val();
+	 			  if((course=='--Select Course--')){
+	 				  $('#courseErrorId').text('Course Name is not selected');
+	 				  return false;
+	 			  }
+	 			 if((sem=='--Select Semester--')){
+	 				  $('#semesterErrorId').text('Semester is not selected');
+	 				  return false;
+ 			  		}  
+	 			if((subType=='--Select Interest--')){
+	 				  $('#subTypeErrorId').text('Interest is not selected');
+	 				  return false;
+			  	} 
+
+	 		  });
+	 	})(jQuery);
 
         function goBack() {
 	        window.history.back();
