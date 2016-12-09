@@ -59,6 +59,11 @@
             <div class="row">
             	<div class="col-lg-3 col-lg-offset-4">
             		<form id="addSubjectForm" action="addSubject" method="POST">
+            			<div class="row">
+       						<div class="col-lg-5 ">
+                        		<p style="color:red" id="courseErrorId"></p>
+                 			</div>
+            			</div>
             			<div class="form-group">
 	                          <label for="select_course">Select Course:</label>
 	                          <select class="form-control" id="select_course" name="select_course">
@@ -67,12 +72,22 @@
 	                            <option>MTech</option> 
 	                          </select>
                     	</div>
+                    	<div class="row">
+       						<div class="col-lg-5 ">
+                        		<p style="color:red" id="semesterErrorId"></p>
+                 			</div>
+            			</div>
                     	<div class="form-group">
 	                          <label for="select_semester">Select Semester:</label>
 	                          <select class="form-control" id="select_semester" name="select_semester" disabled="disabled">
 	                           		<option>--Select Semester--</option>
 	                          </select>
                     	</div>
+                    	<div class="row">
+       						<div class="col-lg-5 ">
+                        		<p style="color:red" id="subTypeErrorId"></p>
+                 			</div>
+            			</div>
                     	<div class="form-group">
 	                          <label for="select_subject_type">Select Subject Type:</label>
 	                          <select class="form-control" id="select_subject_type" name="select_subject_type" disabled="disabled">
@@ -80,12 +95,17 @@
 	                            
 	                          </select>
                     	</div>
+                    	<div class="row">
+       						<div class="col-lg-6">
+                        		<p style="color:red" id="subNameErrorId"></p>
+                 			</div>
+            			</div>
                     	<div class="form-group">
     						<label for="subject_name">Subject Name:</label>
     						<input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="Enter Subject Name" disabled="disabled"/>
     						
   						</div>
-  						<button class="btn btn-success" type="submit">Add Subject</button> 
+  						<button class="btn btn-success" type="submit" id="addSubjectId">Add Subject</button> 
                          
             		</form>
             			<button class="btn btn-danger" type="button" id="cancel" onclick="goBack()">Back</button>
@@ -100,6 +120,7 @@
         	    	
         	    	$('#select_course').on('change', function() {
         	    		$('#addSubject_msg').text('');
+        	    		$('#courseErrorId').text('');
         	    		  //alert( this.value ); // or $(this).val()
         	    			var courseName = this.value;
         	    		  	if(courseName=='--Select Course--'){
@@ -135,6 +156,7 @@
         	    	});
         	    	
         	    	$('#select_semester').on('change', function() {
+        	    		 $('#semesterErrorId').text('');
         	    		var semester = this.value;
         	    		if(semester=='--Select Semester--'){
         	    			$('#select_subject_type').empty();
@@ -151,6 +173,7 @@
         	    		}
         	    	});
         	    	$('#select_subject_type').on('change', function() {
+        	    		$('#subTypeErrorId').text('');
         	    		var subjectType=this.value;
         	    		if(subjectType=='--Select Subject Type--'){
         	    			$('#subject_name').empty();
@@ -160,11 +183,43 @@
         	    			$('#subject_name').prop('disabled', false);
         	    		}
         	    	});
+        	    	$('#subject_name').on('change', function() {
+        	    		 $('#subNameErrorId').text('');
+        	    	});
         	    });
         	    function goBack() {
         	        window.history.back();
         	    }
-        	    
+        	    (function($){
+        	 		   $('#addSubjectId').on('click',function(){
+        	 			   
+        	 			  var course=$('#select_course').val();
+        	 			  var sem=$('#select_semester').val();
+        	 			 var subType=$('#select_subject_type').val();
+       	 			  	var subName=$('#subject_name').val();
+        	 			  if((course=='--Select Course--')){
+        	 				  $('#courseErrorId').text('Select Course');
+        	 				  return false;
+        	 			  }
+        	 			 if((sem=='--Select Semester--')){
+	       	 				  $('#semesterErrorId').text('Select Semester');
+	       	 				  return false;
+       	 			  		}  
+        	 			if((subType=='--Select Subject Type--')){
+	       	 				  $('#subTypeErrorId').text('Select Subject Type');
+	       	 				  return false;
+     	 			  		} 
+        	 			if((subName=='')){
+	       	 				  $('#subNameErrorId').text('Enter Subject Name');
+	       	 				  return false;
+   	 			  		} 
+        	 	});
+        	 		   
+        	 		   $('#cancelId').on('click',function(){
+        	 		   		window.location.href='student.jsp';
+        	 		   });
+        	 		  
+        	 	   })(jQuery);
         </script>
     </body>
 </html>
