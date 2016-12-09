@@ -43,14 +43,17 @@
              <div class="row">
                 <div style="height: 50px"></div>
             </div>
-       
-            
+       		<div class="row">
+       			<div class="col-lg-3 col-lg-offset-4">
+                        <p style="color:red" id="msgId"></p>
+                 </div>
+            </div>
             <form action="FeedBackServlet" method="POST">
             <div class="row">
                 <div class="col-lg-3 col-lg-offset-4">
             	        <div class="form-group">
 	                          <label for="select_feedback">Select Feedback:</label>
-	                          <select class="form-control" id="select_feedback" name="select_feedback">
+	                          <select class="form-control" id="select_feedback_Id" name="select_feedback">
 	                          	<option>--Select Feedback--</option>
 	                            <option value="5">Awesome!!</option>
 	                            <option value="4">Good!</option>
@@ -62,7 +65,7 @@
 	                          <input type="hidden" name="course" value="${course}" />
 	                          <input type="hidden" name="subject" value="${subject}" />
                     	</div>
-                    	<button class="btn btn-success" type="submit" id="Submit">Submit Feedback</button>
+                    	<button class="btn btn-success" type="submit" id="SubmitId" >Submit Feedback</button>
                     </div>
                  </div>
                  
@@ -72,14 +75,41 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-lg-offset-4">
-             		<button class="btn btn-danger" type="button" id="cancel" onclick="goBack()">Back</button>
+             		<button class="btn btn-danger" type="button" id="cancelId">Back</button>
              	</div>
              </div>
          </div>
+          <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/jquery/jquery_session.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
          <script type="text/javascript">
-	 	    function goBack() {
-		        window.history.back();
-		    }
+	       
+	    	   
+	    	   
+	    	   (function($){
+	    		   $('#SubmitId').on('click',function(){
+	    			   
+	    			   var feedbackVal=$('#select_feedback_Id').val();
+		    		   
+			    	   if(feedbackVal=="--Select Feedback--"){
+			    		   $('#msgId').text('Select valid Feedback value');
+			    		   
+			    		   return false;
+			    	   }else{
+			    		   
+			    		return true;   
+			    	   }
+	    		 	});
+	    		   
+	    		   $('#cancelId').on('click',function(){
+	    		   		window.location.href='student.jsp';
+	    		   });
+	    		  
+	    	   })(jQuery);
+	    	   
+	    	   
+	       
+	 	    
          </script>
 	</body>
 </html>
