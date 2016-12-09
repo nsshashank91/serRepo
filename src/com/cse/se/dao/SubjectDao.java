@@ -157,9 +157,11 @@ public class SubjectDao {
 			for(Subject subject:subjects){
 				if(0==subject.getFeedbackCount()){
 					newSubjects.add(subject);
+					System.out.println("New Subjects : "+newSubjects);
 				}
 				else{
 					oldSubjects.add(subject);
+					System.out.println("Old subject :"+oldSubjects);
 				}
 			}
 			
@@ -169,6 +171,7 @@ public class SubjectDao {
 				String maxSubjectName = null;
 				int maxFeedBack = 0;
 				int maxFeedbackCount = 0;
+				ArrayList<Subject> maxSubjects = new ArrayList<Subject>();
 				
 				for(Subject subject:oldSubjects){
 					int feedback = subject.getFeedback();
@@ -183,7 +186,41 @@ public class SubjectDao {
 					}
 					
 				}
-				if(null!=maxSubjectName){
+				for(Subject subject:oldSubjects){
+					int feedback = subject.getFeedback();
+					double feedbackDouble = subject.getFeedback(); 
+					int feedbackCount = subject.getFeedbackCount();
+					double feedbackValue = feedbackDouble/feedbackCount;
+					if(maxFeedbackValue==feedbackValue){
+						Subject maxEqualSubject = new Subject();
+						maxEqualSubject.setFeedback(feedback);
+						maxEqualSubject.setFeedbackCount(feedbackCount);
+						maxEqualSubject.setSubjectName(subject.getSubjectName());
+						maxSubjects.add(maxEqualSubject);
+					}
+					
+				}
+				if(!maxSubjects.isEmpty()){
+					int maxSubjectsCount = maxSubjects.size();
+					Random rand = new Random();
+					int randNumber = rand.nextInt(maxSubjectsCount);
+					Subject suggestedSubject = null;
+					suggestedSubject = maxSubjects.get(randNumber);
+					if(null!=suggestedSubject){
+						if(null!=suggestedSubject.getSubjectName()){
+							
+							System.out.println("Suggested Subject is "+suggestedSubject+" with an average of"+maxFeedbackValue);
+							return suggestedSubject.getSubjectName();
+						}
+						else{
+							return null;
+						}
+					}
+					else{
+						return null;
+					}
+				}
+				else if(null!=maxSubjectName){
 					Subject maxSubject = new Subject();
 					maxSubject.setSubjectName(maxSubjectName);
 					if(0!=maxFeedBack){
@@ -192,7 +229,8 @@ public class SubjectDao {
 					if(0!=maxFeedbackCount){
 						maxSubject.setFeedbackCount(maxFeedbackCount);
 					}
-					System.out.println("Recommended SUbject is "+maxSubject+" with an average of"+maxFeedbackValue);
+					
+					System.out.println("Recommended Subject is "+maxSubject+" with an average of"+maxFeedbackValue);
 					return maxSubjectName;
 				}
 				else{
@@ -203,7 +241,7 @@ public class SubjectDao {
 				System.out.println("New subjects are: "+newSubjects);
 				int newSubjectsCount=newSubjects.size();
 				Random rand = new Random();
-				int randNumber = rand.nextInt(newSubjectsCount) + 1;
+				int randNumber = rand.nextInt(newSubjectsCount);
 				Subject subject = newSubjects.get(randNumber);
 				String subName = null;
 				subName = subject.getSubjectName();
