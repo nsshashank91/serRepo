@@ -7,6 +7,9 @@ public class Subject {
 	private String courseName;
 	private String subjectType;
 	private String semester;
+	private int feedback;
+	private int feedbackCount;
+	
 	public int getSubjectId() {
 		return subjectId;
 	}
@@ -37,12 +40,28 @@ public class Subject {
 	public void setSemester(String semester) {
 		this.semester = semester;
 	}
+	
+	
+	public int getFeedback() {
+		return feedback;
+	}
+	public void setFeedback(int feedback) {
+		this.feedback = feedback;
+	}
+	public int getFeedbackCount() {
+		return feedbackCount;
+	}
+	public void setFeedbackCount(int feedbackCount) {
+		this.feedbackCount = feedbackCount;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
 				+ ((courseName == null) ? 0 : courseName.hashCode());
+		result = prime * result + feedback;
+		result = prime * result + feedbackCount;
 		result = prime * result
 				+ ((semester == null) ? 0 : semester.hashCode());
 		result = prime * result + subjectId;
@@ -66,6 +85,10 @@ public class Subject {
 				return false;
 		} else if (!courseName.equals(other.courseName))
 			return false;
+		if (feedback != other.feedback)
+			return false;
+		if (feedbackCount != other.feedbackCount)
+			return false;
 		if (semester == null) {
 			if (other.semester != null)
 				return false;
@@ -84,6 +107,13 @@ public class Subject {
 		} else if (!subjectType.equals(other.subjectType))
 			return false;
 		return true;
+	}
+	@Override
+	public String toString() {
+		return "Subject [subjectId=" + subjectId + ", subjectName="
+				+ subjectName + ", courseName=" + courseName + ", subjectType="
+				+ subjectType + ", semester=" + semester + ", feedback="
+				+ feedback + ", feedbackCount=" + feedbackCount + "]";
 	}
 	
 	

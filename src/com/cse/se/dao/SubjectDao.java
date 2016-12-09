@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.cse.se.vo.Subject;
 
@@ -114,29 +115,106 @@ public class SubjectDao {
 		
 		try{
 			con = JDBCHelper.getConnection();
-			String subjectQuery = "select subjectName from subject where courseName=? and semester=? and subjectType=?";
+			String subjectQuery = "select subjectName, feedback, feedbackCount from subject where courseName=? and semester=? and subjectType=?";
 			
 			preparedStatement = con.prepareStatement(subjectQuery);
 			preparedStatement.setString(1, courseName);
 			preparedStatement.setString(2, semester);
 			preparedStatement.setString(3, subjectType);
 			ResultSet rs = preparedStatement.executeQuery();
-			String subjectName = null;
+			ArrayList<Subject> subjects = new ArrayList<Subject>();
 			while (rs.next()) {
 
-				subjectName = rs.getString("subjectName");
-				
-
-				System.out.println("subjectName : " + subjectName);
-				break;
+				String subjectName = rs.getString("subjectName");
+				int feedback =0;
+				try{
+					feedback = rs.getInt("feedback");
+				}
+				catch(NullPointerException e){
+					e.printStackTrace();
+					System.out.println("Null pointer while reading feedback value");
+					
+				}
+				int feedbackCount = 0;
+				try{
+					feedbackCount = rs.getInt("feedbackCount");
+				}
+				catch(NullPointerException e){
+					e.printStackTrace();
+					System.out.println("Null pointer while reading feedback count value");
+				}
+				Subject subject = new Subject();
+				subject.setFeedback(feedback);
+				subject.setFeedbackCount(feedbackCount);
+				subject.setSubjectName(subjectName);
+				System.out.println("Subject : " + subject);
+				subjects.add(subject);
 				
 			}
-			if(null!=subjectName){
-				return subjectName;
+			ArrayList<Subject> newSubjects = new ArrayList<Subject>();
+			ArrayList<Subject> oldSubjects = new ArrayList<Subject>();
+			
+			for(Subject subject:subjects){
+				if(0==subject.getFeedbackCount()){
+					newSubjects.add(subject);
+				}
+				else{
+					oldSubjects.add(subject);
+				}
+			}
+			
+			if(newSubjects.isEmpty()){
+				System.out.println("Old subjects are: "+oldSubjects);
+				double maxFeedbackValue=0;
+				String maxSubjectName = null;
+				int maxFeedBack = 0;
+				int maxFeedbackCount = 0;
+				
+				for(Subject subject:oldSubjects){
+					int feedback = subject.getFeedback();
+					double feedbackDouble = subject.getFeedback(); 
+					int feedbackCount = subject.getFeedbackCount();
+					double feedbackValue = feedbackDouble/feedbackCount;
+					if(feedbackValue>maxFeedbackValue){
+						maxFeedbackValue=feedbackValue;
+						maxSubjectName = subject.getSubjectName();
+						maxFeedBack = feedback;
+						maxFeedbackCount = feedbackCount;
+					}
+					
+				}
+				if(null!=maxSubjectName){
+					Subject maxSubject = new Subject();
+					maxSubject.setSubjectName(maxSubjectName);
+					if(0!=maxFeedBack){
+						maxSubject.setFeedback(maxFeedBack);
+					}
+					if(0!=maxFeedbackCount){
+						maxSubject.setFeedbackCount(maxFeedbackCount);
+					}
+					System.out.println("Recommended SUbject is "+maxSubject+" with an average of"+maxFeedbackValue);
+					return maxSubjectName;
+				}
+				else{
+					return null;
+				}
 			}
 			else{
-				return null;
+				System.out.println("New subjects are: "+newSubjects);
+				int newSubjectsCount=newSubjects.size();
+				Random rand = new Random();
+				int randNumber = rand.nextInt(newSubjectsCount) + 1;
+				Subject subject = newSubjects.get(randNumber);
+				String subName = null;
+				subName = subject.getSubjectName();
+				if(null!=subName){
+					return subName;
+				}
+				else{
+					return null;
+				}
 			}
+			
 
 		}
 		catch(Exception e){
