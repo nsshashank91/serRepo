@@ -188,7 +188,7 @@
         	    	});
         	    });
         	    function goBack() {
-        	    	window.location.href='admin.jsp';
+        	        window.history.back();
         	    }
         	    (function($){
         	 		   $('#addSubjectId').on('click',function(){
@@ -215,6 +215,9 @@
    	 			  		} 
         	 	});
         	 		   
+        	 		   $('#cancelId').on('click',function(){
+        	 		   		window.location.href='student.jsp';
+        	 		   });
         	 		  
         	 	   })(jQuery);
         </script>
