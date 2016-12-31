@@ -16,7 +16,7 @@
     <%
     	String name = (String)session.getAttribute("user");
     	if(null==name||name.isEmpty()){
-    		response.sendRedirect("/SERS/AdminLogin.jsp");
+    		response.sendRedirect("AdminLogin.jsp");
     	}
     %>
         <div class="container-fluid">
